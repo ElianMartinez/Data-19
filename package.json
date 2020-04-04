@@ -1,0 +1,27 @@
+{
+  "name": "Data-19",
+  "version": "1.0.0",
+  "description": "Program for data visualization for the covid-19 evolution in Dominican Republic - HackathonForHome",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexitoReyes54/Data-19.git"
+  },
+  "keywords": [],
+  "author": "Equipo-19",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexitoReyes54/Data-19/issues"
+  },
+  "homepage": "https://github.com/AlexitoReyes54/Data-19#readme",
+  "dependencies": {
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "node-dev": "^4.0.0",
+    "sequelize": "^5.21.6"
+  }
+}
