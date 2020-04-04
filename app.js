@@ -9,7 +9,7 @@ const db = require('./controllers/db');
 const record = require('./models/record');
 //setters and use
 app.use(morgan("tiny"))
-app.set("port",3001);
+app.set("port",3001 || process.env.PORT);
 app.set("view engine","ejs")
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.set("/views",path.join(__dirname, 'views'))

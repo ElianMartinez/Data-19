@@ -10,8 +10,8 @@ Record.init({
     allowNull: false,
     primaryKey: true,
   },
-  Provincia: {
-    type: Sequelize.STRING
+  Id_provincia: {
+    type: Sequelize.INTEGER
     // allowNull defaults to true
   },
   Infectados: {
@@ -39,11 +39,4 @@ Record.init({
   freezeTableName: true,
 });
 
-Record.findAll({where: {Provincia:"Santiago"}})
-.then(data => {
-  var total = 0;
-  for (var i = 0; i < data.length; i++) {
-    var total = data[i].Infectados + total;
-  }
-  console.log(total);
-})
+module.exports = Record;

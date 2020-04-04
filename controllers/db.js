@@ -15,3 +15,6 @@ sequelize.authenticate()
   });
 
 module.exports = sequelize;
+
+
+const dataServe = require('./dataServe');
