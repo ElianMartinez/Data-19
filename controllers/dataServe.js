@@ -18,7 +18,6 @@ async function actualDay() {
      return maxDia;
 }
 
-
 async function serveData(param) {
   let day = await actualDay()
   let total = 0;
@@ -38,10 +37,8 @@ async function serveData(param) {
   }else {
     total = 0;
   }
-  console.log(total);
   return total;
 }
-
 
 async function mainGraphic() {
   let graphData = [];
@@ -80,8 +77,57 @@ async function mainGraphic() {
     return graphData;
 }
 
-mainGraphic()
+async function predictInfection() {
+  let data = await mainGraphic()
+  let expect = [];
+  let tmp = 0;
+  for (var i = 0; i < data.length; i++) {
+    if (i > 1) {
+      tmp = data[i].infected/data[i-1].infected
+      //console.log(data[i].infected+"/"+data[i-1].infected);
+      let res = Math.round(tmp.toFixed(2)*data[i].infected)
+      if (i > 1) {
+        expect.push({
+          day:data[i].day,
+          infected:data[i].infected,
+          expect:res
+        })
+      }
+
+    }else {
+      expect.push({
+        day:data[i].day,
+        infected:data[i].infected,
+        expect:0
+      })
+    }
+
+  }
+  return expect;
+}
+
+async function deathRate() {
+  let death = await serveData("Death")
+  let infected = await serveData("Infected")
+
+  let _death = parseInt(death)
+  let _infected = parseInt(infected)
+  let rate = _death/_infected
+  return rate.toFixed(2);
+}
+
+ async function infectedPorcent() {
+  let poblation = 10169000;
+  let infected = await serveData("Infected")
+  let _infected = parseInt(infected)
+
+  let porcent = _infected/poblation
+  return porcent.toFixed(4);
+}
 
 
-
-//module.exports = ServeAllDays;
+module.exports = infectedPorcent;
+module.exports = serveData;
+module.exports = mainGraphic;
+module.exports = predictInfection;
+module.exports = deathRate;

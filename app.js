@@ -6,7 +6,7 @@ var viewsRutes = require('./rutes/views.js')
 const ejs = require('ejs');
 const morgan = require('morgan');
 const db = require('./controllers/db');
-const record = require('./models/record');
+const actionRoutes = require('./rutes/actions');
 //setters and use
 app.use(morgan("tiny"))
 app.set("port",3001 || process.env.PORT);
@@ -17,6 +17,7 @@ app.use(express.urlencoded())
 
 //imported routes
 app.use('/',viewsRutes)
+app.use('/',actionRoutes)
 
 //server listen
 app.listen(app.get("port"),function() {
