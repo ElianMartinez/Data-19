@@ -13,6 +13,12 @@ Province.init({
   Nombre: {
     type: Sequelize.INTEGER
   },
+  codigo: {
+    type: Sequelize.STRING
+  },
+  poblacion: {
+    type: Sequelize.STRING
+  },
 },{
   sequelize,
   modelName: 'provincias',

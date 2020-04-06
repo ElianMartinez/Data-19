@@ -37,6 +37,7 @@ router.get("/recover",async function(req,res) {
 /* Data predictions and porcents */
 router.get("/prediction",async function(req,res) {
   let result = await dataServe.predictInfection()
+  console.log(result);
   res.json({
     data:result
   })
@@ -52,6 +53,13 @@ router.get("/deathrate",async function(req,res) {
 
 router.get("/infected/porcent",async function(req,res) {
   let result = await dataServe.deathRate()
+  res.json({
+    data:result
+  })
+})
+
+router.get("/map",async function(req,res) {
+  let result = await dataServe.loadMap()
   res.json({
     data:result
   })
