@@ -142,7 +142,22 @@ async function deathRate() {
   return porcent.toFixed(4);
 }
 
+async function loadMap() {
+  let res = []
+  let provinces = await Record.findAll({ where: {Dia:11 }, include: [Province]})
+  for (var i = 0; i < provinces.length; i++) {
+    res.push({
+      infectado:provinces[i].Infectados,
+      fallecidos:provinces[i].Fallecidos,
+      provincia:provinces[i].provincia.Nombre,
+      poblacion:provinces[i].provincia.poblacion
+    })
+  }
+  return res;
+}
 
+
+module.exports.loadMap = loadMap;
 module.exports.infectedPorcent = infectedPorcent;
 module.exports.serveData = serveData;
 module.exports.mainGraphic = mainGraphic;
