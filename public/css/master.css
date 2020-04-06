@@ -1,3 +1,88 @@
-h1{
-  color: red;
+body{
+  font-family: 'Roboto Slab',medium;
+}
+.center{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+}
+.map{
+  margin-top: 2px;
+  width: 70%;
+  background: gray;
+  height: 400px;
+}
+#mainChart{
+  width: 400px;
+  height:400px;
+}
+#sexChart{
+  width: 400px;
+  height:400px;
+}
+h2 {
+  text-align: center;
+  margin-top: 40px;
+}
+p{
+  text-align: center;
+  margin: 9px;
+  color: gray
+}
+
+/*Main view Flexbox*/
+#tabledDiv{
+  overflow-x: scroll;
+}
+.dad{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.son{
+  width: 50%
+}
+
+/*  Clases de la tabla */
+.dia{
+  color: #1E90FF;
+}
+.fecha{
+  color:#6495ED
+}
+.infec{
+  color:green
+}
+.aumento-i{
+  color: #32CD32
+}
+.fallecido{
+  color: red
+}
+.aumento-f{
+  color: tomato;
+}
+.velocidad{
+  color: navy;
+}
+/*  Stilizar scroll de la web*/
+::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+    display: block;;  /* Ocultar scroll */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    width: 3px;
+    height: 3px;
 }

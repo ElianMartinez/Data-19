@@ -45,6 +45,7 @@ async function mainGraphic() {
   let tmpDeath = 0;
   let tmpRecover = 0;
   let tmpInfected = 0;
+  let tmpFecha = "";
   let days = await actualDay() + 1;
   let data = await Record.findAll();
 
@@ -63,15 +64,21 @@ async function mainGraphic() {
         tmpRecover = dayData[i].Curados + tmpRecover
       }
 
+      for (var i = 0; i < dayData.length; i++) {
+        tmpFecha = dayData[i].Fecha
+      }
+
       graphData.push({
         day:c,
         infected:tmpInfected,
         death:tmpDeath,
-        recover:tmpRecover
+        recover:tmpRecover,
+        date:tmpFecha
       })
       tmpRecover = 0;
       tmpDeath = 0;
       tmpInfected = 0;
+      tmpFecha = "";
   }
   console.log(graphData);
     return graphData;
@@ -126,8 +133,8 @@ async function deathRate() {
 }
 
 
-module.exports = infectedPorcent;
-module.exports = serveData;
-module.exports = mainGraphic;
-module.exports = predictInfection;
-module.exports = deathRate;
+module.exports.infectedPorcent = infectedPorcent;
+module.exports.serveData = serveData;
+module.exports.mainGraphic = mainGraphic;
+module.exports.predictInfection = predictInfection;
+module.exports.deathRate = deathRate;

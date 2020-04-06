@@ -2,10 +2,92 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,500,600,700,900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data-19</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <link rel="stylesheet" href="static/css/master.css">
   </head>
   <body>
-    <h1>Ok It Work's</h1>
+
+
+    <!--This is the Navbar><!-->
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-brand mb-0 h1">Data-19</span>
+      <div class="container-flex p-2 " id="basicInfo">
+        <span class="badge badge-pill badge-warning p-2 ">Infectados:1000</span>
+        <span class="badge badge-pill badge-danger p-2">Fallecidos:2000</span>
+        <span class="badge badge-pill badge-success p-2">Recuperados:3000</span>
+      </div>
+    </nav>
+
+
+
+
+    <!--Fake map><!-->
+    <div class="center">
+      <div class="map">
+      </div>
+    </div>
+
+    <!--This is the chart><!-->
+    <h2>Grafico Principal</h2>
+    <div class="">
+      <canvas id="mainChart"></canvas>
+    </div>
+
+
+
+    <!--This is the daa box><!-->
+      <h2>Datos generales</h2>
+    <div id="tabledDiv">
+      <table id="tabla" class="table">
+      <tr >
+        <th>Dia:</th>
+      </tr>
+      <tr>
+        <td>Fecha:</td>
+      </tr>
+      <tr>
+        <th>Infectados:</th>
+      </tr>
+      <tr>
+        <td>Aumento:</td>
+      </tr>
+      <tr>
+        <th>Fallecidos:</th>
+      </tr>
+      <tr>
+        <td>Aumento:</td>
+      </tr>
+      <tr>
+        <th>Velocidad:</th>
+      </tr>
+    </table>
+    </div>
+    <p><b>Nota:</b>Velocidad se refiere a la rapidez de exparcián del virus tomando en cuanta su comportamiento en días anteriores.</p>
+
+
+      <div class="dad">
+          <div class="son">
+            <h2>Muertes por sexo</h2>
+              <canvas id="sexChart"></canvas>
+          </div>
+          <div class="son">
+            <h2>Poblacion infectada</h2>
+              <canvas id="sexChart2"></canvas>
+          </div>
+      </div>
+
+
+
+    <script src="static/js/charts.js"></script>
+
+    <script src="static/js/info-box.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
   </body>
 </html>
