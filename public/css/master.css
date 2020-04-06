@@ -21,17 +21,33 @@ body{
   width: 400px;
   height:400px;
 }
-h2 {
+h2,h4 {
   text-align: center;
   margin-top: 40px;
 }
 p{
   text-align: center;
   margin: 9px;
-  color: gray
+  color: gray;
+}
+.text-block{
+  margin-top: 320px;
+  text-align: center;
+}
+/* ------------------------Icons styles---------------------------*/
+.nav-icon{
+  width: 20px;
+  height: 20px;
+}
+.icon-text{
+  color: #fff;
+}
+.chart-icons{
+  width: 30px;
+  height: 30px;
 }
 
-/*Main view Flexbox*/
+/*---------------Main view Flexbox---------------*/
 #tabledDiv{
   overflow-x: scroll;
 }
@@ -85,4 +101,18 @@ p{
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
     width: 3px;
     height: 3px;
+}
+
+/*---------Media query----------*/
+@media only screen and (max-width: 900px) {
+  .dad {
+    flex-direction: column;
+  }
+  .son{
+    width: 100%;
+    margin-bottom: 170px;
+  }
+  .text-block{
+    margin-top: 90px;
+  }
 }

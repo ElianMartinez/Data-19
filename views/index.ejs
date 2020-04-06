@@ -16,9 +16,9 @@
     <nav class="navbar navbar-dark bg-dark">
       <span class="navbar-brand mb-0 h1">Data-19</span>
       <div class="container-flex p-2 " id="basicInfo">
-        <span class="badge badge-pill badge-warning p-2 ">Infectados:1000</span>
-        <span class="badge badge-pill badge-danger p-2">Fallecidos:2000</span>
-        <span class="badge badge-pill badge-success p-2">Recuperados:3000</span>
+        <span class="badge badge-pill badge-warning p-2 m-1 icon-text"><img class="nav-icon" src="static/icons/virus.svg" alt="Infectados">1000</span>
+        <span class="badge badge-pill badge-danger p-2 m-1 icon-text"><img class="nav-icon" src="static/icons/skull.svg" alt="Fallecidos">2000</span>
+        <span class="badge badge-pill badge-success p-2  m-1 icon-text"><img class="nav-icon" src="static/icons/hand-medical.svg" alt="Recuperados">3000</span>
       </div>
     </nav>
 
@@ -32,7 +32,7 @@
     </div>
 
     <!--This is the chart><!-->
-    <h2>Grafico Principal</h2>
+    <h2>Grafico Principal <img class="chart-icons" src="static/icons/chart.svg" alt=""></h2>
     <div class="">
       <canvas id="mainChart"></canvas>
     </div>
@@ -40,7 +40,7 @@
 
 
     <!--This is the daa box><!-->
-      <h2>Datos generales</h2>
+      <h2>Datos generales<img class="chart-icons" src="static/icons/book.svg" alt=""></h2>
     <div id="tabledDiv">
       <table id="tabla" class="table">
       <tr >
@@ -68,22 +68,32 @@
     </div>
     <p><b>Nota:</b>Velocidad se refiere a la rapidez de exparcián del virus tomando en cuanta su comportamiento en días anteriores.</p>
 
-
+        <hr>
       <div class="dad">
-          <div class="son">
-            <h2>Muertes por sexo</h2>
+          <div class="son" style="position: relative; height:40vh; width:80vw">
+            <h4>Muertes por sexo <img class="chart-icons" src="static/icons/venus.svg" alt=""></h4>
               <canvas id="sexChart"></canvas>
+              <p>Actual porcentaje de muertes categorizadas por sexo segun registros.</p>
           </div>
-          <div class="son">
-            <h2>Poblacion infectada</h2>
-              <canvas id="sexChart2"></canvas>
+          <div class="son" style="position: relative; height:40vh; width:80vw">
+            <h4>Poblacion infectada <img class="chart-icons" src="static/icons/users.svg" alt=""></h4>
+              <canvas id="poblationChart"></canvas>
+              <p>Actual porcentaje de la poblacion infectada del Covid-19 segun registros.</p>
+
           </div>
       </div>
 
+      <div class="text-block">
+        <h3>Estimación en vista de los datos actuales</h3>
+        <p>Haciendo uso de varios modelos matematios podemos estimar el comportamiento
+        del virus en cortos periodos de tiempo(No más de tres días)</p>
+      </div>
 
+      <div class="">
+        <canvas id="infectedChart"></canvas>
+      </div>
 
     <script src="static/js/charts.js"></script>
-
     <script src="static/js/info-box.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
