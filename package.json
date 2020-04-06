@@ -1,7 +1,7 @@
 {
   "name": "Data-19",
   "version": "1.0.0",
-  "description": "Program for data visualization for the covid-19 evolution in Dominican Republic - HackathonForHome",
+  "description": "Program for data visualization for the covid-19 evolution in Dominican Republic - HackathonFromHome",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,9 +18,13 @@
   },
   "homepage": "https://github.com/AlexitoReyes54/Data-19#readme",
   "dependencies": {
+    "chart.js": "^2.9.3",
+    "dotenv": "^8.2.0",
     "ejs": "^3.0.2",
     "express": "^4.17.1",
+    "jest": "^25.2.7",
     "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
     "node-dev": "^4.0.0",
     "sequelize": "^5.21.6"
   }
