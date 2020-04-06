@@ -85,14 +85,15 @@ async function mainGraphic() {
 }
 
 async function predictInfection() {
-  let data = await mainGraphic()
+  var data = await mainGraphic()
   let expect = [];
-  let tmp = 0;
+  var tmp = 0;
   for (var i = 0; i < data.length; i++) {
     if (i > 1) {
       tmp = data[i].infected/data[i-1].infected
-      //console.log(data[i].infected+"/"+data[i-1].infected);
-      let res = Math.round(tmp.toFixed(2)*data[i].infected)
+      // var n = i+1
+      // console.log("tmp -- "+n+" -- "+tmp);
+      var res = Math.round(tmp.toFixed(2)*data[i].infected)
       if (i > 1) {
         expect.push({
           day:data[i].day,
@@ -110,6 +111,15 @@ async function predictInfection() {
     }
 
   }
+   var n = data.length -1
+   var nextDay = data[n].infected*tmp.toFixed(2);
+
+   expect.push({
+     day:data.length+1,
+     infected:0,
+     expect:nextDay
+   })
+
   return expect;
 }
 

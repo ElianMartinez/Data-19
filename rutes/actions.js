@@ -37,7 +37,6 @@ router.get("/recover",async function(req,res) {
 /* Data predictions and porcents */
 router.get("/prediction",async function(req,res) {
   let result = await dataServe.predictInfection()
-  console.log(result);
   res.json({
     data:result
   })
