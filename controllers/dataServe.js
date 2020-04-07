@@ -45,6 +45,7 @@ async function mainGraphic() {
   let tmpDeath = 0;
   let tmpRecover = 0;
   let tmpInfected = 0;
+  let tmpFecha = "";
   let days = await actualDay() + 1;
   let data = await Record.findAll();
 
@@ -63,29 +64,36 @@ async function mainGraphic() {
         tmpRecover = dayData[i].Curados + tmpRecover
       }
 
+      for (var i = 0; i < dayData.length; i++) {
+        tmpFecha = dayData[i].Fecha
+      }
+
       graphData.push({
         day:c,
         infected:tmpInfected,
         death:tmpDeath,
-        recover:tmpRecover
+        recover:tmpRecover,
+        date:tmpFecha
       })
       tmpRecover = 0;
       tmpDeath = 0;
       tmpInfected = 0;
+      tmpFecha = "";
   }
   console.log(graphData);
     return graphData;
 }
 
 async function predictInfection() {
-  let data = await mainGraphic()
+  var data = await mainGraphic()
   let expect = [];
-  let tmp = 0;
+  var tmp = 0;
   for (var i = 0; i < data.length; i++) {
     if (i > 1) {
       tmp = data[i].infected/data[i-1].infected
-      //console.log(data[i].infected+"/"+data[i-1].infected);
-      let res = Math.round(tmp.toFixed(2)*data[i].infected)
+      // var n = i+1
+      // console.log("tmp -- "+n+" -- "+tmp);
+      var res = Math.round(tmp.toFixed(2)*data[i].infected)
       if (i > 1) {
         expect.push({
           day:data[i].day,
@@ -103,6 +111,15 @@ async function predictInfection() {
     }
 
   }
+   var n = data.length -1
+   var nextDay = data[n].infected*tmp.toFixed(2);
+
+   expect.push({
+     day:data.length+1,
+     infected:0,
+     expect:nextDay
+   })
+
   return expect;
 }
 
@@ -125,9 +142,24 @@ async function deathRate() {
   return porcent.toFixed(4);
 }
 
+async function loadMap() {
+  let res = []
+  let provinces = await Record.findAll({ where: {Dia:11 }, include: [Province]})
+  for (var i = 0; i < provinces.length; i++) {
+    res.push({
+      infectado:provinces[i].Infectados,
+      fallecidos:provinces[i].Fallecidos,
+      provincia:provinces[i].provincia.Nombre,
+      poblacion:provinces[i].provincia.poblacion
+    })
+  }
+  return res;
+}
 
-module.exports = infectedPorcent;
-module.exports = serveData;
-module.exports = mainGraphic;
-module.exports = predictInfection;
-module.exports = deathRate;
+
+module.exports.loadMap = loadMap;
+module.exports.infectedPorcent = infectedPorcent;
+module.exports.serveData = serveData;
+module.exports.mainGraphic = mainGraphic;
+module.exports.predictInfection = predictInfection;
+module.exports.deathRate = deathRate;
