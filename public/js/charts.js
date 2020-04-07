@@ -2,16 +2,10 @@
 var ctx = document.getElementById('mainChart').getContext('2d');
 var ctx1 = document.getElementById('sexChart').getContext('2d');
 var ctx2 = document.getElementById('poblationChart').getContext('2d');
+let arrInfectados = []
+let arrRecuperados = []
+let arrFallecidos = []
 
-
-
-let data =  {
-    labels:[],
-    datasets: []
-}
-
-
-function loadMainGrahp() {
   fetch('/graphic')
   .then(function(response) {
     return response.json();
@@ -19,55 +13,59 @@ function loadMainGrahp() {
   .then(function(myJson) {
     let array = myJson.data;
     let days = []
+
     for (var i = 0; i < array.length; i++) {
       let actualDay = i+1
-      days.push("Dia "+actualDay)
+      days.push("Día "+actualDay)
     }
     data.labels = days
-    pushSchema(array,"Fallecidos","rgba(255, 0, 0, 1)")
-    pushSchema(array,"Recuperados","rgba(51, 255, 51, 1)")
-    pushSchema(array,"Infectados","rgba(255, 255, 51, 1)")
+      for (var i = 0; i < array.length; i++) {
+        arrInfectados.push(array[i].infected)
+      }
+
+      for (var i = 0; i < array.length; i++) {
+        arrRecuperados.push(array[i].recover)
+      }
+
+      for (var i = 0; i < array.length; i++) {
+        arrFallecidos.push(array[i].death)
+      }
   });
-}
-loadMainGrahp()
 
-function pushSchema(array,label,color) {
-  let schema = {
-      fill:false,
-      lineTension:0,
-      label:"",
-      data:[],
-      borderColor: [],
-      borderWidth: 3
-  }
-  let data_ = []
-  if (label == "Infectados") {
-    for (var i = 0; i < array.length; i++) {
-      data_.push(array[i].infected)
-    }
-  }else if (label == "Recuperados") {
-    for (var i = 0; i < array.length; i++) {
-      data_.push(array[i].recover)
-    }
-  }else if (label == "Fallecidos") {
-    for (var i = 0; i < array.length; i++) {
-      data_.push(array[i].death)
-    }
-  }
 
-  schema.data = data_
-  schema.label = label
-  schema.borderColor = [color]
-  data.datasets.push(schema)
-  console.log(schema);
-
+let data =  {
+    labels:[],
+    datasets: [{
+        fill:false,
+        lineTension:0,
+        label:"Fallecidos",
+        data:arrFallecidos,
+        borderColor: ["rgba(255, 0, 0, 1)"],
+        borderWidth: 3
+    },
+    {
+        fill:false,
+        lineTension:0,
+        label:"Infectados",
+        data:arrInfectados,
+        borderColor: ["rgba(255, 255, 51, 1)"],
+        borderWidth: 3
+    },
+    {
+        fill:false,
+        lineTension:0,
+        label:"Recuperados",
+        data:arrRecuperados,
+        borderColor: ["rgba(51, 255, 51, 1)"],
+        borderWidth: 3
+    }]
 }
 
 let options = {
   responsive:true,
     scales: {
         yAxes: [{
-          stacked: true,
+          stacked: false,
             ticks: {
                 beginAtZero: true
             }
