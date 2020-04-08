@@ -1,22 +1,8 @@
 var ctx3 = document.getElementById('infectedChart').getContext('2d');
-let predictData =  {
-    labels:[],
-    datasets: []
-}
-let options_ = {
-  responsive:true,
-    scales: {
-        yAxes: [{
-          stacked: true,
-            ticks: {
-                beginAtZero: true
-            }
-        }]
-    }
-}
-loadPredictGrahp()
+let arrInfectados1 = []
+let arrPrediccion = []
 
-function loadPredictGrahp() {
+
   fetch('/prediction')
   .then(function(response) {
     return response.json();
@@ -29,37 +15,52 @@ function loadPredictGrahp() {
       days.push("Dia "+actualDay)
     }
     predictData.labels = days
-    pushSchema(array,"Infectados","rgba(255, 0, 0, 1)")
-    pushSchema(array,"Esperado","rgba(153, 204, 255, 1)")
+
+      for (var i = 0; i < array.length; i++) {
+            arrInfectados1.push(array[i].infected)
+      }
+
+      for (var i = 0; i < array.length; i++) {
+        arrPrediccion.push(array[i].expect)
+      }
+
+
   });
+
+
+
+
+let predictData =  {
+    labels:[],
+    datasets: [{
+        fill:false,
+        lineTension:0,
+        label:"Prediccion",
+        data:arrPrediccion,
+        borderColor: ["rgba(153, 204, 255, 1)"],
+        borderWidth: 3,
+    },
+    {
+        fill:false,
+        lineTension:0,
+        label:"Infectados",
+        data:arrInfectados1,
+        borderColor: ["rgba(255, 0, 0, 1)"],
+        borderWidth: 3,
+    }]
+}
+let options_ = {
+  responsive:true,
+    scales: {
+        yAxes: [{
+          stacked: false,
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
 }
 
-
-function pushSchema(array,label,color) {
-  let schema = {
-      fill:false,
-      lineTension:0,
-      label:"",
-      data:[],
-      borderColor: [],
-      borderWidth: 3,
-  }
-  let tdata = []
-  if (label == "Infectados") {
-    for (var i = 0; i < array.length; i++) {
-          tdata.push(array[i].infected)
-    }
-  }else if (label == "Esperado") {
-    for (var i = 0; i < array.length; i++) {
-      tdata.push(array[i].expect)
-    }
-  }
-  schema.data = tdata
-  schema.label = label
-  schema.borderColor = [color]
-  predictData.datasets.push(schema)
-
-}
 
 console.log(predictData);
 var infectedChart = new Chart(ctx3, {
